@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recomendados del Día a Día</title>
+<meta name="description" content="Recomendaciones de productos para el hogar y el cuidado personal.">
+<style>
+  :root{
+    --bg: #FAF6EF;
+    --card: #FFFFFF;
+    --ink: #23302B;
+    --ink-soft: #5B6B63;
+    --primary: #2F6F62;
+    --primary-dark: #234F45;
+    --accent: #D98E3B;
+    --border: #E6DFD1;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Sans 3', 'Segoe UI', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  h1, h2, h3{
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  a{ color: inherit; }
+
+  /* HEADER */
+  header{
+    background: var(--primary);
+    color: #fff;
+    padding: 28px 20px 24px;
+    text-align: center;
+  }
+  header h1{
+    font-size: clamp(28px, 5vw, 38px);
+    letter-spacing: 0.3px;
+  }
+  header p{
+    margin: 8px 0 0;
+    font-size: 17px;
+    opacity: 0.92;
+  }
+
+  /* NAV */
+  nav{
+    max-width: 900px;
+    margin: -20px auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 16px;
+    flex-wrap: wrap;
+  }
+  nav button{
+    background: #fff;
+    border: 2px solid var(--border);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 17px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(35,48,43,0.08);
+    transition: all 0.15s ease;
+  }
+  nav button:hover{ border-color: var(--primary); }
+  nav button.active{
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* FEATURED */
+  .featured-wrap{
+    max-width: 900px;
+    margin: 34px auto 0;
+    padding: 0 16px;
+  }
+  .featured{
+    background: var(--card);
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .featured img{
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background: var(--bg);
+  }
+  .featured-label{
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .featured h3{ font-size: 22px; }
+  .featured p{ color: var(--ink-soft); margin: 6px 0 12px; }
+
+  /* GRID */
+  main{
+    max-width: 900px;
+    margin: 36px auto 60px;
+    padding: 0 16px;
+  }
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+  }
+  .card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card img{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: var(--bg);
+  }
+  .card-body{
+    padding: 14px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .card h3{
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .card p{
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0 0 10px;
+    flex-grow: 1;
+  }
+  .price{
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .btn{
+    display: inline-block;
+    text-align: center;
+    background: var(--primary);
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: background 0.15s ease;
+  }
+  .btn:hover{ background: var(--primary-dark); }
+
+  .section-title{
+    font-size: 22px;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  footer{
+    max-width: 900px;
+    margin: 0 auto 40px;
+    padding: 20px 16px 0;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 14px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Recomendados del Día a Día</h1>
+  <p>Productos que uso, pruebo y recomiendo para el hogar y el día a día</p>
+</header>
+
+<nav id="nav">
+  <button data-cat="todos" class="active">Todos</button>
+  <button data-cat="cuidado">Cuidado Personal</button>
+  <button data-cat="hogar">Hogar y Día a Día</button>
+</nav>
+
+<div class="featured-wrap" id="featured-wrap"></div>
+
+<main>
+  <div id="grid-container"></div>
+</main>
+
+<footer>
+  <p>Como Afiliado de Amazon, obtengo ingresos por las compras que califican.</p>
+</footer>
+
+<script>
+/* ============================================================
+   CÓMO AGREGAR UN PRODUCTO NUEVO (léelo con calma una vez):
+
+   1. Copia UN bloque completo desde { hasta }, (con la coma al final).
+   2. Pégalo dentro de la lista "products", antes del cierre "];".
+   3. Cambia solo lo que está entre comillas " ".
+   4. category debe ser exactamente: "cuidado" o "hogar"
+   5. featured: true muestra el producto arriba, destacado.
+      Deja solo UN producto con featured: true a la vez.
+   6. Guarda el archivo y sube el cambio a GitHub. Ya está.
+   ============================================================ */
+
+const products = [
+  {
+    
+    name: "Juego de cuidado de la piel de aloe vera, 27 unidades",
+    description: "Set facial con limpiador, tónico, suero y crema de manos, para todas las edades.",
+    price: "19,99€",
+    image: "https://m.media-amazon.com/images/I/815q982r5TL._AC_SL1500_.jpg",
+    link: "https://amzn.to/4ydfvcc",
+    category: "cuidado",
+    featured: false
+  },
+  {
+    name: "The Fruit Company Set Regalo Summer Sandía",
+    description: "Pack con aceite labial, crema de manos, colonia y neceser, edición verano.",
+    price: "17,40€",
+    image: "https://m.media-amazon.com/images/I/61U4VT4vC-L._AC_SL1400_.jpg",
+    link: "https://amzn.to/4yhVpNQ",
+    category: "cuidado",
+    featured: false
+  },
+  {
+    name: "Tulipán Negro - Neceser Verano Coco Pure White",
+    description: "Kit de cuidado personal con fragancia a coco, hidrata y perfuma la piel.",
+    price: "13,21€",
+    image: "https://m.media-amazon.com/images/I/61-2wT3OgZL._AC_SL1402_.jpg",
+    link: "https://amzn.to/4gsLWwV",
+    category: "cuidado",
+    featured: false
+  },
+  {
+    name: "Kit Skincare Facial Mujer Completo, 12 Piezas",
+    description: "Set coreano de cuidado facial, hidrata, nutre y reduce líneas de expresión.",
+    price: "24,38€",
+    image: "https://m.media-amazon.com/images/I/81bTuPV2qtL._AC_SL1500_.jpg",
+    link: "https://amzn.to/4eX9xEN",
+    category: "cuidado",
+    featured: true
+  },];
+
+/* ---- No es necesario tocar nada de aquí para abajo ---- */
+
+function renderFeatured(){
+  const wrap = document.getElementById('featured-wrap');
+  const f = products.find(p => p.featured);
+  if(!f){ wrap.innerHTML = ""; return; }
+  wrap.innerHTML = `
+    <div class="featured">
+      <img src="${f.image}" alt="${f.name}">
+      <div>
+        <span class="featured-label">Recomendado de la semana</span>
+        <h3>${f.name}</h3>
+        <p>${f.description}</p>
+        <div class="price">${f.price}</div>
+        <a class="btn" href="${f.link}" target="_blank" rel="nofollow noopener">Ver en Amazon</a>
+      </div>
+    </div>`;
+}
+
+function renderGrid(filter){
+  const container = document.getElementById('grid-container');
+  const list = products.filter(p => filter === 'todos' || p.category === filter);
+
+  const groups = {
+    cuidado: { title: "Cuidado Personal", items: [] },
+    hogar: { title: "Hogar y Día a Día", items: [] }
+  };
+  list.forEach(p => groups[p.category].items.push(p));
+
+  let html = "";
+  Object.values(groups).forEach(group => {
+    if(group.items.length === 0) return;
+    html += `<h2 class="section-title">${group.title}</h2><div class="grid">`;
+    group.items.forEach(p => {
+      html += `
+        <div class="card">
+          <img src="${p.image}" alt="${p.name}">
+          <div class="card-body">
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <div class="price">${p.price}</div>
+            <a class="btn" href="${p.link}" target="_blank" rel="nofollow noopener">Ver en Amazon</a>
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+  });
+
+  container.innerHTML = html || "<p>No hay productos en esta categoría todavía.</p>";
+}
+
+document.getElementById('nav').addEventListener('click', (e) => {
+  if(e.target.tagName !== 'BUTTON') return;
+  document.querySelectorAll('#nav button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  renderGrid(e.target.dataset.cat);
+});
+
+renderFeatured();
+renderGrid('todos');
+</script>
+
+</body>
+</html>
