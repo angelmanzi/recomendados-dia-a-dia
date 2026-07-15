@@ -235,7 +235,9 @@
    6. Guarda el archivo y sube el cambio a GitHub. Ya está.
    ============================================================ */
 
-const products = [
+const featuredProductName = "Kit Skincare Facial Mujer Completo, 12 Piezas";
+
+const products =  [
   {
     
     name: "Juego de cuidado de la piel de aloe vera, 27 unidades",
@@ -325,7 +327,7 @@ function slugify(text){
 
 function renderFeatured(){
   const wrap = document.getElementById('featured-wrap');
-  const f = products.find(p => p.featured);
+ const f = products.find(p => p.name === featuredProductName);
   if(!f){ wrap.innerHTML = ""; return; }
   wrap.innerHTML = `
     <div class="featured">
